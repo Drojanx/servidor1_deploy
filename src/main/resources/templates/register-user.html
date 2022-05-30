@@ -1,0 +1,39 @@
+<div th:replace="Fragments/head.html" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<link th:href="@{/css/signin.css}" rel="stylesheet"/>
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+    <div class="container-fluid d-flex flex-column" >
+
+        <div th:replace="fragments/header.html" :: header xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+        <main class="form-signin">
+            <form style="align:center" th:action="@{/add-user}" method="post" th:object="${user}">
+
+                <h1 class="h3 mb-3 fw-normal">Crear cuenta</h1>
+
+                <label for="username" class="visually-hidden">Usuario</label>
+                <input th:field="*{username}" type="text" id="username" class="form-control" placeholder="Nombre de usuario" name="username" required autofocus>
+                <label for="password" class="visually-hidden">Contraseña</label>
+                <input th:field="*{password}" type="password" id="password" class="form-control" placeholder="Contraseña" name="password" required>
+                <label for="name" class="visually-hidden">Nombre</label>
+                <input th:field="*{name}" type="text" id="name" class="form-control" placeholder="Nombre" name="name" required>
+                <label for="surname" class="visually-hidden">Apellido</label>
+                <input th:field="*{surname}" type="text" id="surname" class="form-control" placeholder="Apellido" name="surname" required>
+                <label for="email" class="visually-hidden">Email</label>
+                <input th:field="*{email}" type="text" id="email" class="form-control" placeholder="Email" name="email" required>
+                <label for="birthDate" class="visually-hidden">Fecha de nacimiento</label>
+                <input th:field="*{birthDate}" type="date" id="birthDate" class="form-control" placeholder="Contraseña" name="birthDate" required>
+
+                <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Registrate</button>
+                <a class="btn btn-secondary" th:href="@{/login}">¿Tienes cuenta? Inicia sesión</a>
+
+            </form>
+            <div th:if="${message}">
+                <div class="alert alert-success" role="alert">
+                    <p th:text="${message}"></p>
+                </div>
+            </div>
+        </main>
+        <span th:replace="Fragments/footer.html" xmlns:th="http://www.w3.org/1999/xhtml"></span>
+    </div>

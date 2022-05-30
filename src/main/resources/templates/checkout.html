@@ -1,0 +1,85 @@
+<div th:replace="fragments/head.html" :: head xmlns:th="http://www.w3.org/1999/xhtml"></div>
+</head>
+
+<body class="d-flex vh-100">
+  <div class="container-fluid d-flex flex-column px-0" >
+
+    <header th:replace="fragments/header.html" :: header xmlns:th="http://www.w3.org/1999/xhtml"></header>
+
+    <main class="container w-50 mb-auto mt-lg-5 px-5">
+      <div class="py-5 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+          <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/>
+        </svg>        <h2 th:text="${book.name}"></h2>
+      </div>
+
+      <div>
+
+        <div>
+          <form th:action="@{/add-purchase}" method="post" th:object="${book}" modelAttribute="bookCheckout">
+            <hr class="my-4">
+
+            <h4 class="mb-3">Forma de pago</h4>
+
+            <div class="my-3">
+              <div class="form-check">
+                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked>
+                <label class="form-check-label" for="credit">Tarjeta de crédito</label>
+              </div>
+              <div class="form-check">
+                <input id="debit" name="paymentMethod" type="radio" class="form-check-input">
+                <label class="form-check-label" for="debit">Tarjeta de débito</label>
+              </div>
+  <!--            <div class="form-check">
+                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="paypal">PayPal</label>
+              </div>-->
+            </div>
+
+            <div class="row gy-3">
+              <div class="col-md-5">
+                <label for="cc-name" class="form-label">Nombre en la tarjeta </label>
+                <input type="text" class="form-control" id="cc-name" placeholder="">
+                <small class="text-muted">Nombre completo que aparece en la tarjeta</small>
+                <div class="invalid-feedback">
+                  El nombre de la tarjeta es obligatorio.
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <label for="cc-number" class="form-label">Numero de la tarjeta</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="">
+                <div class="invalid-feedback">
+                  El numero de la tarjeta es obligatorio
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <label for="cc-expiration" class="form-label">Vencimiento</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="">
+                <div class="invalid-feedback">
+                  Fecha de vencimiento es obligatoria
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <label for="cc-cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="">
+                <div class="invalid-feedback">
+                  Código de seguridad es obligatorio
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+            <input th:field="*{id}" type="text" id="bookid" class="visually-hidden" name="bookid" th:value="${book.id}">
+
+
+            <button class="w-50 d-block mx-auto btn btn-primary btn-lg" type="submit">Pagar</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <div th:replace="fragments/footer.html" :: footer xmlns:th="http://www.w3.org/1999/xhtml"></div>
+  </div>
+

@@ -1,0 +1,34 @@
+<head th:replace="fragments/head"></head>
+<link th:href="@{/css/signin.css}" rel="stylesheet"/>
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+    <div class="container-fluid d-flex flex-column" >
+
+        <div th:replace="fragments/header.html" :: header xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+        <main class="form-signin">
+            <form style="align:center" th:action="@{/login}" method="post">
+                <h1 class="h3 mb-3 fw-normal">Iniciar sesión</h1>
+
+                <label for="username" class="visually-hidden">Usuario</label>
+                <input type="text" id="username" class="form-control" placeholder="Nombre de usuario" name="username" required autofocus>
+                <label for="password" class="visually-hidden">Contraseña</label>
+                <input type="password" id="password" class="form-control" placeholder="Contraseña" name="password" required>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Recordarme
+                    </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary mb-2" type="submit">Entrar</button>
+                <a class="btn btn-secondary" th:href="@{/register-user}">Registrate</a>
+
+                <br/><br/>
+                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                    Usuario/Contraseña incorrectos
+                </div>
+            </form>
+        </main>
+
+        <div th:replace="fragments/footer.html" :: footer xmlns:th="http://www.w3.org/1999/xhtml"></div>
+    </div>

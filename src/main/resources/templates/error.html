@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head(title='My Shop')"></head>
+<body>
+<header th:replace="fragments/header"></header>
+<main>
+    <br/><br/>
+    <div class="container">
+        <div class="alert alert-danger" role="alert">
+            <p><strong>Se ha producido un error</strong></p>
+            <p th:text="${message}"></p>
+            <p th:text="${url}"></p>
+            <p><a href="#" onclick="history.back()">Volver</a></p>
+        </div>
+    </div>
+</main>
+
+<script src="/webjars/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/bootstrapless-star-rating/star-rating.min.js}"></script>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script src="js/star-rating.js"></script>
+<script src="js/star-rating.min.js"></script>
+</body>
+</html>
+
+

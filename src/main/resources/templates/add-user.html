@@ -1,0 +1,25 @@
+<div th:replace="Fragments/head.html" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+<div class="container-fluid d-flex flex-column" >
+
+    <div th:replace="fragments/header.html" :: header xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+    <main class="mb-auto">
+        </br></br>
+        <div class="container">
+            <div class="alert alert-success" role="alert">
+                <p>Usuario <strong th:text="${user.username}"></strong> registrado correctamente</p>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="/webjars/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/bootstrapless-star-rating/star-rating.min.js}"></script>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script src="js/star-rating.js"></script>
+<script src="js/star-rating.min.js"></script>
+</body>
+</html>

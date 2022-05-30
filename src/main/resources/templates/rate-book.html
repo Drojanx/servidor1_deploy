@@ -1,0 +1,31 @@
+<div th:replace="Fragments/head.html" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+</head>
+
+<body class="d-flex h-100 text-center">
+<div class="vh-100 w-100 d-flex flex-column" >
+
+    <div th:replace="fragments/header.html" :: header xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+    <main class="mb-auto">
+        </br></br>
+        <form th:action="@{/save-review}" method="post" th:object="${review}" class="container">
+            <div class="w-50 m-auto mb-3 alert alert-primary" role="alert">
+                <strong th:text="${book.name}"></strong>
+                <input th:field="*{book}" type="text" id="bookid" class="visually-hidden" name="bookid" th:value="${book}">
+                <input th:field="*{user}" type="text" id="userid" class="visually-hidden" name="userid" th:value="${user}">
+            </div>
+            <input id="input-3" name="input-3" th:field="*{stars}" th:placeholder="#{review.stars}" class="rating" data-size="xm" data-show-caption="false" data-show-clear="false">
+            <textarea class="w-100" th:field="*{comment}" th:value="#{review.comment}"></textarea>
+            <label class="mb-2"><input type="checkbox" th:field="*{published}" th:placeholder="#{published}"/>Marca para publicar la reseña</label><br>
+            <button type="submit" class="btn btn-sm btn-outline-secondary p-2">Guardar</button>
+        </form>
+    </main>
+</div>
+<script src="/webjars/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/assets/bootstrapless-star-rating/star-rating.min.js}"></script>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script src="js/star-rating.js"></script>
+<script src="js/star-rating.min.js"></script>
+</body>
+</html>

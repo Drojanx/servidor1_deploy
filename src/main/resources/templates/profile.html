@@ -1,0 +1,67 @@
+<div th:include="fragments/head"></div>
+
+<body class="profile d-flex vh-100">
+    <div class="w-100 d-flex flex-column">
+        <header th:replace="fragments/header"></header>
+
+        <main class="mb-auto">
+            <div class="d-flex flex-column align-items-center">
+                <div class="w-50 border-right">
+                    <form th:action="@{/profile/update}" method="post" th:object="${user}" modelAttribute="userModify">
+                        <div class="p-3 py-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Perfil de usuario</h4>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6"><label class="labels">Nombre</label><input th:field="*{name}" type="text" class="form-control" th:placeholder="#{user.name}"></div>
+                                <div class="col-md-6"><label class="labels">Apellidos</label><input th:field="*{surname}" type="text" class="form-control" th:placeholder="#{user.surname}"></div>
+                                <div class="col-md-6"><label class="labels">Fecha de nacimiento</label><input th:field="*{birthDate}" type="date" class="form-control" th:placeholder="#{user.birthDate}"></div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12"><label class="labels">Email</label><input th:field="*{email}" type="text" class="form-control" th:placeholder="#{user.email}"></div>
+                                <div class="col-md-12"><label class="labels">Nombre de usuario</label><input th:field="*{username}" type="text" class="form-control" th:placeholder="#{user.username}"></div>
+                            </div>
+                            <div class="row mt-3">
+                            </div>
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-primary profile-button" type="submit">Guardar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="w-100 px-5">
+                    <div class="p-3 py-5">
+                        <div class="d-flex flex-column justify-content-between align-items-center experience">
+                            <h4 class="text-right">Mis libros</h4>
+                            <div class="w-100 container">
+
+                                <div class="w-100 row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                                    <div class="col" th:each="book : ${myBooks}">
+                                        <div class="card shadow-sm">
+                                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em" th:text="${book.name}"></text></svg>
+
+                                            <div class="card-body">
+                                                <p class="card-text" th:text="${book.name}"></p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-sm btn-outline-secondary" th:href="@{'/book/' + ${book.id}}">View</a>
+                                                    </div>
+                                                    <a th:href="@{/rate-book/{bookid}(bookid=${book.id})}" class="btn btn-sm btn-outline-info" type="submit">Opinar</a>
+                                                    <input id="input-3" name="input-3" th:value="${book.getAvgReview()}" class="rating" data-readonly="true" data-size="xm" data-show-caption="false" data-show-clear="false">
+                                                    <small class="text-muted" th:text="${book.price}"></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="fragments/footer"></footer>
+    </div>
